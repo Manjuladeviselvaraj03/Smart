@@ -1,7 +1,38 @@
 <div class="main">
  <h2>Register Form</h2>
- 
+ <div formGroup="register">
+    <div class="input1">
+        <input type="text" placeholder="Name" formControl="name">
+        @if(f['name'].touched && f['name'].invalid){
+            <small>Name is required</small>
+        }
+    </div>
+
+<div class="input2">
+    <input type="email" placeholder="Email" formControl="email">
+     @if(f['email'].touched && f['email'].invalid){
+            <small>Email is required</small>
+        }
+</div>
+
+<div class="input3">
+    <input type="password" placeholder="Password" formControl="password">
+    @if(f['password'].touched && f['password'].invalid){
+            <small>Password is required</small>
+        }
+        </div>
+
+<div class="input4">
+    <input type="number" placeholder="Phoneno" formControl="Phoneno">
+    @if(f['phoneno'].touched && f['phoneno'].invalid){
+            <small>Phoneno is required</small>
+        }
+</div>
 
 
+
+</div>
+  
+<button type="submit" [disabled]="register.invalid">Submit</button>
 
 </div>
