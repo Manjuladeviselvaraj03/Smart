@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-frontlayout',
   imports: [],
   templateUrl: './frontlayout.component.html',
-  styleUrl: './frontlayout.component.css'
+  styleUrls: ['./frontlayout.component.css']
 })
 export class FrontlayoutComponent {
 
