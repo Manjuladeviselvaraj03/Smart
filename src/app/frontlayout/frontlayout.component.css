@@ -26,7 +26,8 @@
 }
 
 .navlink a:hover {
-  text-decoration: underline;
+  
+  background-color: rgb(28, 29, 28);
 }
 
 
@@ -133,4 +134,5 @@
   .card {
     width: 90%;
   }
+ 
 }

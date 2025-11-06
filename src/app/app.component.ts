@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { EventComponent } from './event/event.component';
 import { LoginComponent } from './login/login.component';
 import { MeetupComponent } from './meetup/meetup.component';
@@ -17,4 +17,9 @@ import { EventregisterComponent } from './eventregister/eventregister.component'
 })
 export class AppComponent {
   title = 'smartevent';
+    constructor(private router: Router) {}
+
+  isLoginPage(): boolean {
+    return this.router.url === '/login';
+  }
 }

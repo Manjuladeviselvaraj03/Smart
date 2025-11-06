@@ -1,7 +1,7 @@
 <header class="navdetils">
   <div class="logo">FestEvents</div>
   <div class="navlink">
-    <a routerLink="/">Home</a>
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
     <a routerLink="/register">Register</a>
     <a routerLink="/about">About</a>
      <a routerLink="/login">Login</a>
@@ -9,7 +9,8 @@
     
   </div>
 </header>
-<div>
+@if(isHomePage()){
+  <div>
   <section class="content">
     <h1>Welcome to FestEvents</h1>
     <p>  Plan, register, and manage your events and meetup with ease —  all in one place!</p>
@@ -40,3 +41,6 @@
     </div>
   </section>
 </div>
+
+}
+<router-outlet></router-outlet>
