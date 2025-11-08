@@ -1,1 +1,26 @@
-<p>dashboard works!</p>
+<header class="header">
+  <h2>My Dashboard</h2>
+
+  <div class="user-dash" *ngIf="userData; else loginButton">
+      Welcome, {{ userData.name }}
+    <button (click)="logout()">Logout</button>
+  </div>
+ <div class="searchbar">
+   <input type="text" placeholder="Search your choice" />
+ </div>
+  
+ </div class="location">
+ <select>
+
+ <option value="">coimbatore</option>
+ <option>Chennai</option>
+ <option>Bengaluru</option>
+ <option>salem</option>
+ </select>
+</div>
+
+  <ng-template #loginButton>
+    <button routerLink="/login">Login</button>
+  </ng-template>
+</header>
+

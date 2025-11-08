@@ -1,38 +1,64 @@
 <div class="main">
- <h2>Register Form</h2>
- <div formGroup="register">
-    <div class="input1">
-        <input type="text" placeholder="Name" formControl="name">
-        @if(f['name'].touched && f['name'].invalid){
-            <small>Name is required</small>
-        }
+  <div class="formcontainer">
+    <h2>Register Form</h2>
+    <form [formGroup]="register">
+      <div class="input">
+        <label>Name</label>
+        <input type="text" placeholder="eg:Neha" formControlName="name" class="inp1" />
+        @if(register.get('name')?.touched){
+        <div class="error"></div>
+        @if(f['name'].errors?.['required']){
+        <small>Name is required</small>
+        } }
+      </div>
+
+      <div class="input">
+        <label>Email</label>
+        <input
+          type="email"
+          placeholder="neha@gmail.com"
+          formControlName="email"
+          class="inp1"
+        />
+        @if(register.get('email')?.touched){
+        <div class="error"></div>
+        @if(f['email'].errors?.['required']){
+        <small>Email is required</small>
+        }}
+    
     </div>
 
-<div class="input2">
-    <input type="email" placeholder="Email" formControl="email">
-     @if(f['email'].touched && f['email'].invalid){
-            <small>Email is required</small>
-        }
-</div>
+      <div class="input">
+        <label>Password</label>
+        <input
+          type="password"
+          placeholder="Password!123"
+          formControlName="password"
+          class="inp1"
+        />
+        @if(register.get('password')?.touched){
+        <div class="error"></div>
+        @if(f['password'].errors?.['required']){
+        <small>Enter valid password</small>
+        }}
+      </div>
 
-<div class="input3">
-    <input type="password" placeholder="Password" formControl="password">
-    @if(f['password'].touched && f['password'].invalid){
-            <small>Password is required</small>
-        }
-        </div>
+      <div class="input">
+        <label>Phone No</label>
+        <input
+          type="text"
+          placeholder="1234567893"
+          formControlName="phoneno"
+          class="inp1"
+        />
+        @if(register.get('phoneno')?.touched){
+        <div class="error"></div>
+        @if(f['phoneno'].errors?.['required']){
+        <small>Enter valid phone number</small>
+        }}
+      </div>
 
-<div class="input4">
-    <input type="number" placeholder="Phoneno" formControl="Phoneno">
-    @if(f['phoneno'].touched && f['phoneno'].invalid){
-            <small>Phoneno is required</small>
-        }
-</div>
-
-
-
-</div>
-  
-<button type="submit" [disabled]="register.invalid">Submit</button>
-
+      <button type="submit" [disabled]="register.invalid">Submit</button>
+    </form>
+  </div>
 </div>
