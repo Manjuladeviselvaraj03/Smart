@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataserviceService } from '../dataservice.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,19 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
   
+  
    isLoggedIn = false;
   userData: any = null;
 
-  onLoginSuccess(user: any) {
-    this.isLoggedIn = true;
-    this.userData = user;
-  }
-  ngOnInit():void{
+  constructor(public dataService: DataserviceService) {}
 
+  ngOnInit(): void {
+
+    this.isLoggedIn = this.dataService.isLoggedIn;
+    this.userData = this.dataService.getUserData();
   }
 
-  logout(){
-      this.isLoggedIn = false;
+  logout(): void {
+    this.dataService.logout();
+    this.isLoggedIn = false;
     this.userData = null;
   }
 }

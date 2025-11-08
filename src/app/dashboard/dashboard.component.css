@@ -1,0 +1,68 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1a1a1a;   /* dark navbar background */
+  color: white;
+  padding: 15px 40px;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  gap: 20px;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: 1px;
+}
+
+.user-dash {
+ display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+}
+
+.searchbar input {
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  width: 180px;
+}
+
+.location select {
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background-color: white;
+  color: #333;
+}
+
+
+.searchbar input:focus,
+.location select:focus {
+  border: 2px solid #007bff;
+}
+
+.user-dash button,
+.header button {
+  background-color: #ff5c5c;
+  border: none;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.user-dash button:hover,
+.header button:hover {
+  background-color: #e04b4b;
+}

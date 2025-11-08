@@ -6,6 +6,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { DataserviceService } from '../dataservice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +18,7 @@ import {
 export class RegisterComponent implements OnInit {
   register!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder , public data:DataserviceService,private router:Router ) {}
   ngOnInit() {
     this.register = this.fb.group({
       name: ['', Validators.required],
