@@ -19,7 +19,7 @@ export class LoginComponent {
   onLogin() {
     if (this.email && this.password) {
       alert('Login Successful!');
-      this.router.navigate(['/home']); // redirect after login
+      this.router.navigate(['/dashboard']);
     }
   }
   

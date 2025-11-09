@@ -17,9 +17,16 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
 
+   
     this.isLoggedIn = this.dataService.isLoggedIn;
-    this.userData = this.dataService.getUserData();
+
+    try {
+      this.userData = this.dataService.getUserData() || { name: 'Devi' };
+    } catch {
+      this.userData = { name: 'Devi' }; 
+    }
   }
+  
 
   logout(): void {
     this.dataService.logout();

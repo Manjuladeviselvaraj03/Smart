@@ -5,16 +5,18 @@ import { FormGroup } from '@angular/forms';
   providedIn: 'root'
 })
 export class DataserviceService {
+
+  loginform!:FormGroup
+  isLoggedIn:boolean=false;
+  logout(){
+    this.isLoggedIn=false;
+  }
  getUserData(): any {
     throw new Error('Method not implemented.');
   }
   clearUserData() {
     throw new Error('Method not implemented.');
   }
-  loginform!:FormGroup
-  isLoggedIn:boolean=false;
-  logout(){
-    this.isLoggedIn=false;
-  }
+  
   
 }
