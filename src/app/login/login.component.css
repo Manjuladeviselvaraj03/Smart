@@ -10,14 +10,14 @@
   justify-content: center;
   align-items: center;
   height: 90vh;
-  background-color: beige;
+  background-color:#ccc;
   padding: 1rem;
 }
 
 .login-card {
   width: 300px;
   min-height: 28rem;
-  background-color: #fff;
+  background-color:beige;
   border: 2px solid #ddd;
   display: flex;
   flex-direction: column;
