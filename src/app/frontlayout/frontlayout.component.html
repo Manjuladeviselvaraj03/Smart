@@ -4,27 +4,24 @@
     <a routerLink="/" [class.active]="isActiveRoute('/')">Home</a>
     
     <!-- Show Dashboard when logged in -->
-    <a *ngIf="isLoggedIn" routerLink="/dashboard" [class.active]="isActiveRoute('/dashboard')">Dashboard</a>
-    
-    <!-- Show Register and Login only when NOT logged in -->
-    <a *ngIf="!isLoggedIn" routerLink="/register" [class.active]="isActiveRoute('/register')">Register</a>
-    <a *ngIf="!isLoggedIn" routerLink="/login" [class.active]="isActiveRoute('/login')">Login</a>
-    
-    <a (click)="onAboutClick()" [class.active]="isActiveRoute('/about')" style="cursor: pointer;">About</a>
-    <a (click)="onContactClick()" [class.active]="isActiveRoute('/contact')" style="cursor: pointer;">Contact us</a>
+      @if(isLoggedIn){
+    <a routerLink="/dashboard">Dashboard</a>
+    }
+     <!-- Show Register and Login only when NOT logged in -->
+    @if(!isLoggedIn){
+      <a routerLink="/register">Register</a>
+    }
+     @if(!isLoggedIn){
+      <a routerLink="/login">Login</a>
+    }
+    <a routerLink="/about">About</a>
+    <a routerLink="/contact">Contact us</a>
   </nav>
 
   <!-- User Section (when logged in) -->
   <div class="user-section" *ngIf="isLoggedIn">
-    <span class="welcome-text">Welcome, {{ userData.name }}</span>
-    <button class="logout-btn" (click)="logout()">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-        <polyline points="16 17 21 12 16 7"></polyline>
-        <line x1="21" y1="12" x2="9" y2="12"></line>
-      </svg>
-      Logout
-    </button>
+    <span class="welcome-text">Welcome {{ userData.name }}</span>
+    <button class="logout-btn" (click)="logout()">Logout</button>
   </div>
 </header>
 
@@ -33,9 +30,7 @@
     <section class="content">
       <h1>Welcome to FestEvents</h1>
       <p>Plan, register, and manage your events and meetup with ease — all in one place!</p>
-      <button class="cta-btn" (click)="isLoggedIn ? router.navigate(['/dashboard']) : router.navigate(['/login'])">
-        {{ isLoggedIn ? 'Go to Dashboard' : 'Get Started' }}
-      </button>
+      <button class="cta-btn" routerLink='/login'>Get Started </button>
     </section>
 
     <section class="cards-container">

@@ -11,16 +11,18 @@ export const routes: Routes = [
   {
     path: '',
     component: FrontlayoutComponent,
+    //path: '***',redirectTo: 'frontlayout', pathMatch: 'full',
     children: [
       { path: 'register', component: RegisterComponent },
       { path: 'login', component: LoginComponent },
       {
         path: 'dashboard',
         component: DashboardComponent,
-        canActivate: [authGuard],
+        //children: [{path: 'logout', component: FrontlayoutComponent}],
       },
       { path: 'about', component: AboutComponent },
-      { path: 'contact', component: ContactComponent }
+      { path: 'contact', component: ContactComponent },
+      
     ],
   },
 ];

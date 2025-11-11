@@ -458,3 +458,22 @@
     min-width: 100px;
   }
 }
+
+/* #myEventsSection {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+ 
+.event-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+ 
+.card {
+  border: 2px solid #8b5cf6;
+  padding: 15px;
+  border-radius: 10px;
+  width: 300px;
+} */

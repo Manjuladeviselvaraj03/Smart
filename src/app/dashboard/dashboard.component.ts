@@ -3,6 +3,8 @@ import { DataserviceService } from '../dataservice.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { EventlabelComponent } from '../eventlabel/eventlabel.component';
+//import jsPDF from 'jspdf';
+//import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,9 +16,12 @@ export class DashboardComponent implements OnInit {
   
   isLoggedIn = false;
   userData: any = null;
+
+//  myEvents: any[] = [];
+ 
   
   // Tab management
-  activeTab: 'events' | 'meetups' | 'myevents' = 'events';
+  activeTab: 'events' | 'meetups' | 'myevents' = 'meetups';
   
   // Search and filter
   searchQuery: string = '';
@@ -136,7 +141,8 @@ export class DashboardComponent implements OnInit {
       const query = this.searchQuery.toLowerCase();
       items = items.filter(item => 
         item.title.toLowerCase().includes(query) ||
-        item.description.toLowerCase().includes(query)
+        item.description.toLowerCase().includes(query) ||
+        item.location.toLowerCase().includes(query)
       );
     }
     
@@ -256,4 +262,19 @@ export class DashboardComponent implements OnInit {
     }
     return (names[0].charAt(0) + names[names.length - 1].charAt(0)).toUpperCase();
   }
+
+  // downloadPDF() {
+  // const data = document.getElementById('reportContent');
+  // if (data) {
+  //   html2canvas(data).then(canvas => {
+  //     const imgWidth = 208;
+  //     const pageHeight = 295;
+  //     const imgHeight = (canvas.height * imgWidth) / canvas.width;
+  //     const contentDataURL = canvas.toDataURL('image/png');
+  //     const pdf = new jsPDF('p', 'mm', 'a4');
+  //     pdf.addImage(contentDataURL, 'PNG', 0, 0, imgWidth, imgHeight);
+  //     pdf.save('UserReport.pdf');
+  //   });
+  //}
+//}
 }

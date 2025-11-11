@@ -53,8 +53,9 @@ export class RegisterComponent implements OnInit {
           if (response.status === 'Success') {
             console.log('User created successfully');
             alert('Registration successful! You can now log in.');
+            
             // Optionally navigate to login page
-            // this.router.navigate(['/login']);
+             this.router.navigate(['/login']);
           } else {
             alert(response.message);
           }

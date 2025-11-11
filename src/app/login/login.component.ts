@@ -15,6 +15,8 @@ export class LoginComponent {
   email = '';
   password = '';
 
+  
+
   constructor(private router: Router, private data: DataserviceService) {}
 
   onLogin() {
@@ -29,11 +31,13 @@ export class LoginComponent {
           console.log('Response received:', response);
           if (response.status === 'Success') {
             console.log('Login successful');
-            // Store user data from response
-            this.data.setUserData({
+            // Build and store only the public user info (avoid storing credentials)
+            const userObj = {
               name: response.username || response.name || this.email,
               email: this.email
-            });
+            };
+            this.data.setUserData(userObj);
+            // Navigate to dashboard
             this.router.navigate(['/dashboard']);
           } else {
             alert(response.message);

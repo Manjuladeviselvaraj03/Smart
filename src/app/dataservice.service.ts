@@ -13,11 +13,26 @@ export class DataserviceService {
   private apiUrl = 'http://localhost:8080/api';
   private userData: any = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+     const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      try {
+        this.userData = JSON.parse(storedUser);
+        // restore logged-in state when a user object exists in storage
+        this.isLoggedIn = true;
+      } catch (e) {
+        console.error('Failed to parse stored user from localStorage', e);
+        localStorage.removeItem('user');
+        this.userData = null;
+        this.isLoggedIn = false;
+      }
+    }
+  }
 
   logout(){
     this.isLoggedIn=false;
     this.userData = null;
+      localStorage.removeItem('user');
   }
   
   getUserData(): any {
@@ -27,6 +42,7 @@ export class DataserviceService {
   setUserData(data: any) {
     this.userData = data;
     this.isLoggedIn = true;
+     localStorage.setItem('user', JSON.stringify(data));
   }
   
   clearUserData() {

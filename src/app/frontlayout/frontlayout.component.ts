@@ -15,6 +15,7 @@ export class FrontlayoutComponent implements OnInit {
   userData: any = null;
   currentRoute: string = '';
   topEvents: any[] = [];
+  user: any;
 
   constructor(
     public router: Router,
@@ -34,7 +35,10 @@ export class FrontlayoutComponent implements OnInit {
     this.checkAuthStatus();
     this.currentRoute = this.router.url;
     this.loadTopEvents();
+    
+    this.user = this.dataService.getUserData();
   }
+
 
   loadTopEvents(): void {
     this.dataService.getTopEvents().subscribe({
@@ -91,10 +95,11 @@ export class FrontlayoutComponent implements OnInit {
   }
 
   logout(): void {
-    this.dataService.clearUserData();
+    // Use service logout to also clear persisted storage
+    this.dataService.logout();
     this.isLoggedIn = false;
     this.userData = null;
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 
   getUserInitials(): string {
@@ -104,14 +109,6 @@ export class FrontlayoutComponent implements OnInit {
       return names[0].charAt(0).toUpperCase();
     }
     return (names[0].charAt(0) + names[names.length - 1].charAt(0)).toUpperCase();
-  }
-
-  onAboutClick(): void {
-    alert('About page clicked!');
-  }
-
-  onContactClick(): void {
-    alert('Contact us page clicked!');
   }
 
   onEventClick(event: any): void {
