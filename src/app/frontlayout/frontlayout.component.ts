@@ -102,14 +102,14 @@ export class FrontlayoutComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  getUserInitials(): string {
-    if (!this.userData?.name) return 'U';
-    const names = this.userData.name.split(' ');
-    if (names.length === 1) {
-      return names[0].charAt(0).toUpperCase();
-    }
-    return (names[0].charAt(0) + names[names.length - 1].charAt(0)).toUpperCase();
-  }
+  // getUserInitials(): string {
+  //   if (!this.userData?.name) return 'U';
+  //   const names = this.userData.name.split(' ');
+  //   if (names.length === 1) {
+  //     return names[0].charAt(0).toUpperCase();
+  //   }
+  //   return (names[0].charAt(0) + names[names.length - 1].charAt(0)).toUpperCase();
+  // }
 
   onEventClick(event: any): void {
     // If not logged in, redirect to login

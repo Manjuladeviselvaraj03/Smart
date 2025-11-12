@@ -254,27 +254,4 @@ export class DashboardComponent implements OnInit {
     this.userData = null;
   }
 
-  getUserInitials(): string {
-    if (!this.userData?.name) return 'U';
-    const names = this.userData.name.split(' ');
-    if (names.length === 1) {
-      return names[0].charAt(0).toUpperCase();
-    }
-    return (names[0].charAt(0) + names[names.length - 1].charAt(0)).toUpperCase();
-  }
-
-  // downloadPDF() {
-  // const data = document.getElementById('reportContent');
-  // if (data) {
-  //   html2canvas(data).then(canvas => {
-  //     const imgWidth = 208;
-  //     const pageHeight = 295;
-  //     const imgHeight = (canvas.height * imgWidth) / canvas.width;
-  //     const contentDataURL = canvas.toDataURL('image/png');
-  //     const pdf = new jsPDF('p', 'mm', 'a4');
-  //     pdf.addImage(contentDataURL, 'PNG', 0, 0, imgWidth, imgHeight);
-  //     pdf.save('UserReport.pdf');
-  //   });
-  //}
-//}
 }
