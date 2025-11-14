@@ -12,7 +12,7 @@
 </div>
 
 <!-- Details Popup Modal - Outside event card for proper layering -->
-<div class="modal-overlay" *ngIf="showDetailsPopup" (click)="closePopup()">
+<div class="modal-confirm" *ngIf="showDetailsPopup" (click)="closePopup()">
   <div class="modal-content" (click)="$event.stopPropagation()">
     <div class="modal-header">
       <h2>{{ event.title }}</h2>

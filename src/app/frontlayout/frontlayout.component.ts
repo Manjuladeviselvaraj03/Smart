@@ -21,12 +21,10 @@ export class FrontlayoutComponent implements OnInit {
     public router: Router,
     public dataService: DataserviceService
   ) {
-    // Subscribe to route changes to update active link and check auth status
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: any) => {
       this.currentRoute = event.url;
-      // Check authentication status on each navigation
       this.checkAuthStatus();
     });
   }
@@ -86,38 +84,19 @@ export class FrontlayoutComponent implements OnInit {
   }
 
   isActiveRoute(route: string): boolean {
-    // For home route, only match exact path
     if (route === '/') {
       return this.currentRoute === '/' || this.currentRoute === '/home';
     }
-    // For other routes, match route and sub-routes
     return this.currentRoute === route || this.currentRoute.startsWith(route + '/');
   }
 
   logout(): void {
-    // Use service logout to also clear persisted storage
     this.dataService.logout();
     this.isLoggedIn = false;
     this.userData = null;
     this.router.navigate(['/']);
   }
 
-  // getUserInitials(): string {
-  //   if (!this.userData?.name) return 'U';
-  //   const names = this.userData.name.split(' ');
-  //   if (names.length === 1) {
-  //     return names[0].charAt(0).toUpperCase();
-  //   }
-  //   return (names[0].charAt(0) + names[names.length - 1].charAt(0)).toUpperCase();
-  // }
-
-  onEventClick(event: any): void {
-    // If not logged in, redirect to login
-    if (!this.isLoggedIn) {
-      this.router.navigate(['/login']);
-    } else {
-      // If logged in, navigate to dashboard
-      this.router.navigate(['/dashboard']);
-    }
+ 
   }
-}
+

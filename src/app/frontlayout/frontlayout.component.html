@@ -7,10 +7,7 @@
       @if(isLoggedIn){
     <a routerLink="/dashboard">Dashboard</a>
     }
-     <!-- Show Register and Login only when NOT logged in -->
-    @if(!isLoggedIn){
-      <a routerLink="/register">Register</a>
-    }
+
      @if(!isLoggedIn){
       <a routerLink="/login">Login</a>
     }
@@ -34,7 +31,7 @@
     </section>
 
     <section class="cards-container">
-      <div class="card" *ngFor="let event of topEvents" (click)="onEventClick(event)">
+      <div class="card" *ngFor="let event of topEvents">
         <h3>{{ event.title }}</h3>
         <p class="event-description">{{ event.description }}</p>
         <p><strong>Date:</strong> {{ event.startingDate }}</p>
@@ -42,5 +39,35 @@
     </section>
   </div>
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <router-outlet></router-outlet>

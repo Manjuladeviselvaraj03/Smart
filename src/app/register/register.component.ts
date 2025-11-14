@@ -53,8 +53,6 @@ export class RegisterComponent implements OnInit {
           if (response.status === 'Success') {
             console.log('User created successfully');
             alert('Registration successful! You can now log in.');
-            
-            // Optionally navigate to login page
              this.router.navigate(['/login']);
           } else {
             alert(response.message);
@@ -67,7 +65,6 @@ export class RegisterComponent implements OnInit {
       });
     } else {
       console.log('Form is invalid');
-      // Mark all fields as touched to show validation errors
       Object.keys(this.register.controls).forEach(key => {
         this.register.get(key)?.markAsTouched();
       });

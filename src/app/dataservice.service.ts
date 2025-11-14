@@ -18,7 +18,6 @@ export class DataserviceService {
     if (storedUser) {
       try {
         this.userData = JSON.parse(storedUser);
-        // restore logged-in state when a user object exists in storage
         this.isLoggedIn = true;
       } catch (e) {
         console.error('Failed to parse stored user from localStorage', e);

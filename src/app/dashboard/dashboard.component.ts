@@ -17,8 +17,6 @@ export class DashboardComponent implements OnInit {
   isLoggedIn = false;
   userData: any = null;
 
-//  myEvents: any[] = [];
- 
   
   // Tab management
   activeTab: 'events' | 'meetups' | 'myevents' = 'meetups';
@@ -168,7 +166,7 @@ export class DashboardComponent implements OnInit {
       items = this.userRegisteredEvents;
     }
     
-    const locations = items.map(item => item.location);
+    const locations = this.filteredItems.map(item => item.location);
     this.availableLocations = [...new Set(locations)].sort();
   }
   
@@ -181,7 +179,6 @@ export class DashboardComponent implements OnInit {
   }
   
   toggleDropdown(event: Event) {
-    event.stopPropagation();
     this.isDropdownOpen = !this.isDropdownOpen;
     
     if (this.isDropdownOpen) {

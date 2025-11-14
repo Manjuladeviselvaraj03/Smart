@@ -4,7 +4,7 @@
     <form [formGroup]="register" (ngSubmit)="onSubmit()">
       <div class="input">
         <label>Name</label>
-        <input type="text" placeholder="eg:Neha" formControlName="name" class="inp1" />
+        <input type="text" placeholder="Enter your name" formControlName="name" class="inp1" />
         @if(register.get('name')?.touched){
         <div class="error"></div>
         @if(f['name'].errors?.['required']){
@@ -16,7 +16,7 @@
         <label>Email</label>
         <input
           type="email"
-          placeholder="neha@gmail.com"
+          placeholder="Enter your email"
           formControlName="email"
           class="inp1"
         />
@@ -32,7 +32,7 @@
         <label>Password</label>
         <input
           type="password"
-          placeholder="Password!123"
+          placeholder="Enter your password "
           formControlName="password"
           class="inp1"
         />
@@ -47,7 +47,7 @@
         <label>Phone No</label>
         <input
           type="text"
-          placeholder="1234567893"
+          placeholder="Enter your phone no" 
           formControlName="phoneno"
           class="inp1"
         />
@@ -59,8 +59,6 @@
       </div>
 
       <button type="submit" routerLink="/login">Submit</button>
-     
-      <!-- <a routerLink="/login"> Login</a></p> -->
     </form>
   </div>
 </div>

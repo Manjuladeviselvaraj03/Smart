@@ -12,7 +12,7 @@ import { AboutComponent } from './about/about.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,LoginComponent,RegisterComponent,FrontlayoutComponent,DashboardComponent,ContactComponent,AboutComponent],
+  imports: [RouterOutlet,LoginComponent,FrontlayoutComponent,DashboardComponent,ContactComponent,AboutComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
