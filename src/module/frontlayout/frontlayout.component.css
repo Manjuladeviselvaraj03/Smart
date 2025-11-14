@@ -55,6 +55,10 @@
   background-color: white;
   border-radius: 2px 2px 0 0;
 }
+.navlink a:hover{
+  color: chocolate;
+  
+}
 
 /* User Section Styles */
 .user-section {
@@ -263,4 +267,9 @@
   .content p {
     font-size: 1rem;
   }
+}
+
+.pi{
+  color:rgba(41, 41, 6, 0.781);
+
 }

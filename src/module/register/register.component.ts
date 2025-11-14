@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { DataserviceService } from '../dataservice.service';
+import { DataserviceService } from '../../sharedResource/dataservice.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
         '',
         [Validators.required, Validators.pattern('^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')]
       ],
-      phoneno: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
     });
   }
   get f() {
@@ -40,13 +40,9 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     
     if (this.register.valid) {
-      const requestBody = {
-        name: this.register.value.name,
-        email: this.register.value.email,
-        password: this.register.value.password,
-        phoneNumber: this.register.value.phoneno
-      };
-
+      const requestBody = this.register.value;
+      
+   
       this.data.registerUser(requestBody).subscribe({
         next: (response) => {
           console.log('Response received:', response);

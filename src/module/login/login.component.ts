@@ -3,19 +3,17 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { FrontlayoutComponent } from '../frontlayout/frontlayout.component';
-import { DataserviceService } from '../dataservice.service';
+import { DataserviceService } from '../../sharedResource/dataservice.service';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule,FormsModule,RouterLink,RouterOutlet],
+  imports: [CommonModule, FormsModule, RouterLink, RouterOutlet],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
-export class LoginComponent { 
+export class LoginComponent {
   email = '';
   password = '';
-
-  
 
   constructor(private router: Router, private data: DataserviceService) {}
 
@@ -23,7 +21,7 @@ export class LoginComponent {
     if (this.email && this.password) {
       const requestBody = {
         email: this.email,
-        password: this.password
+        password: this.password,
       };
 
       this.data.loginUser(requestBody).subscribe({
@@ -34,7 +32,7 @@ export class LoginComponent {
             // Build and store only the public user info (avoid storing credentials)
             const userObj = {
               name: response.username || response.name || this.email,
-              email: this.email
+              email: this.email,
             };
             this.data.setUserData(userObj);
             // Navigate to dashboard
@@ -46,12 +44,13 @@ export class LoginComponent {
         error: (error) => {
           console.error('Error:', error);
           const statusCode = error.status || 'Unknown';
-          alert(`Unable to hit the server. The server may be down. (Status: ${statusCode})`);
-        }
+          alert(
+            `Unable to hit the server. The server may be down. (Status: ${statusCode})`
+          );
+        },
       });
     } else {
       alert('Please fill in all fields correctly before submitting.');
     }
   }
-  
 }

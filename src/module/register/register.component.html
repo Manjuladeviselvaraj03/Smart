@@ -44,16 +44,16 @@
       </div>
 
       <div class="input">
-        <label>Phone No</label>
+        <label>PhoneNumber</label>
         <input
           type="text"
           placeholder="Enter your phone no" 
-          formControlName="phoneno"
+          formControlName="phoneNumber"
           class="inp1"
         />
-        @if(register.get('phoneno')?.touched){
+        @if(register.get('phoneNumber')?.touched){
         <div class="error"></div>
-        @if(f['phoneno'].errors?.['required']){
+        @if(f['phoneNumber'].errors?.['required']){
         <small>Enter valid phone number</small>
         }}
       </div>

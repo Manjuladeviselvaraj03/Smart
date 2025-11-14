@@ -5,19 +5,21 @@
     
     <!-- Show Dashboard when logged in -->
       @if(isLoggedIn){
-    <a routerLink="/dashboard">Dashboard</a>
+    <a routerLink="/dashboard"[class.active]="isActiveRoute('dashboard')">Dashboard</a>
     }
 
      @if(!isLoggedIn){
-      <a routerLink="/login">Login</a>
+      <a routerLink="/login"  [class.active]="isActiveRoute('login')">Login</a>
     }
-    <a routerLink="/about">About</a>
-    <a routerLink="/contact">Contact us</a>
+    <a routerLink="/about" [class.active]="isActiveRoute('about')">About</a>
+    <a routerLink="/contact" [class.active]="isActiveRoute('contact')">Contact us</a>
   </nav>
 
   <!-- User Section (when logged in) -->
   <div class="user-section" *ngIf="isLoggedIn">
+     <span class="pi pi-user"></span>
     <span class="welcome-text">Welcome {{ userData.name }}</span>
+   
     <button class="logout-btn" (click)="logout()">Logout</button>
   </div>
 </header>
