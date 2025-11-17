@@ -1,9 +1,8 @@
-
 .navdetils {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #0078d7; 
+  background-color: #0078d7;
   color: white;
   padding: 15px 40px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -11,6 +10,7 @@
   top: 0;
   z-index: 100;
 }
+
 .logo {
   font-size: 1.8rem;
   font-weight: 700;
@@ -45,7 +45,7 @@
 }
 
 .navlink a.active::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 10%;
@@ -53,6 +53,9 @@
   height: 3px;
   background-color: white;
   border-radius: 2px 2px 0 0;
+}
+.navlink a:hover {
+  color: chocolate;
 }
 
 /* User Section Styles */
@@ -97,7 +100,6 @@
   height: 16px;
 }
 
-
 .content {
   background: linear-gradient(135deg, #0078d7, #00bfff);
   color: white;
@@ -136,7 +138,6 @@
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
-
 
 .cards-container {
   display: flex;
@@ -180,7 +181,6 @@
   min-height: 60px;
   margin-bottom: 10px;
 }
-
 
 @media (max-width: 1024px) {
   .navdetils {
@@ -262,4 +262,8 @@
   .content p {
     font-size: 1rem;
   }
+}
+
+.pi {
+  color: rgba(41, 41, 6, 0.781);
 }

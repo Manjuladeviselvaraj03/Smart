@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataserviceService } from '../dataservice.service';
+import { DataserviceService } from '../sharedResource/dataservice.service';
 
 export const authGuard = () => {
   const dataService = inject(DataserviceService);

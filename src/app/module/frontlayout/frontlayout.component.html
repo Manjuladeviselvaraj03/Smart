@@ -1,0 +1,43 @@
+<header class="navdetils">
+  <div class="logo">FestEvents</div>
+  <nav class="navlink">
+    <a routerLink="/" [class.active]="isActiveRoute('/')">Home</a>
+
+    @if(isLoggedIn){
+    <a routerLink="/dashboard" [class.active]="isActiveRoute('dashboard')"
+      >Dashboard</a
+    >
+    } @if(!isLoggedIn){
+    <a routerLink="/login" [class.active]="isActiveRoute('login')">Login</a>
+    }
+    <a routerLink="/about" [class.active]="isActiveRoute('about')">About</a>
+  </nav>
+  <div class="user-section" *ngIf="isLoggedIn">
+    <span class="pi pi-user"></span>
+    <span class="welcome-text">Welcome {{ userData.name }}</span>
+    <button class="logout-btn" (click)="logout()">Logout</button>
+  </div>
+</header>
+
+@if(isHomePage()){
+<div>
+  <section class="content">
+    <h1>Welcome to FestEvents</h1>
+    <p>
+      Plan, register, and manage your events and meetup with ease — all in one
+      place!
+    </p>
+    <button class="cta-btn" routerLink="/login">Get Started</button>
+  </section>
+
+  <section class="cards-container">
+    <div class="card" *ngFor="let event of topEvents">
+      <h3>{{ event.title }}</h3>
+      <p class="event-description">{{ event.description }}</p>
+      <p><strong>Date:</strong> {{ event.startingDate }}</p>
+    </div>
+  </section>
+</div>
+}
+
+<router-outlet></router-outlet>

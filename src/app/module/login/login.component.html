@@ -1,0 +1,43 @@
+<p-toast position="bottom-right"></p-toast>
+
+<div class="login-page">
+  <div class="login-card">
+    <h2>Login</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <label>Email</label>
+      <input
+        type="email"
+        pInputText
+        formControlName="email"
+        placeholder="Email"
+      />
+      @if(f['email'].touched) {
+      <small class="error" *ngIf="f['email'].errors?.['required']"
+        >Email is required</small
+      >
+      <small class="error" *ngIf="f['email'].errors?.['email']"
+        >Enter a valid email</small
+      >
+      }
+
+      <label>Password</label>
+      <input
+        type="password"
+        pInputText
+        formControlName="password"
+        placeholder="Password"
+      />
+      @if(f['password'].touched && f['password'].errors?.['required']) {
+      <small class="error">Password is required</small>
+      }
+
+      <button type="submit" pButton label="Login" class="login-btn"></button>
+
+      <p>
+        Don't have an account?
+        <a routerLink="/register">Register</a>
+      </p>
+    </form>
+  </div>
+</div>

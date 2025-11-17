@@ -80,8 +80,7 @@
   background: #0056b3;
 }
 
-/* Modal Styles */
-.modal-overlay {
+.modal-confirm {
   position: fixed;
   top: 0;
   left: 0;
@@ -221,7 +220,6 @@
   background: #5a6268;
 }
 
-/* Scrollbar styling for modal */
 .modal-content::-webkit-scrollbar {
   width: 8px;
 }
