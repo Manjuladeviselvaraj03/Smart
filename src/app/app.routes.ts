@@ -20,7 +20,7 @@ export const routes: Routes = [
         canActivate: [authGuard],
       },
       { path: 'about', component: AboutComponent },
-      { path: 'contact', component: ContactComponent },
+      { path: 'contact', component: ContactComponent }
     ],
   },
 ];
