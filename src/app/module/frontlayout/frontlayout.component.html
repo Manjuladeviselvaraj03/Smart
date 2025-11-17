@@ -3,7 +3,6 @@
   <nav class="navlink">
     <a routerLink="/" [class.active]="isActiveRoute('/')">Home</a>
 
-    <!-- Show Dashboard when logged in -->
     @if(isLoggedIn){
     <a routerLink="/dashboard" [class.active]="isActiveRoute('dashboard')"
       >Dashboard</a
@@ -13,8 +12,6 @@
     }
     <a routerLink="/about" [class.active]="isActiveRoute('about')">About</a>
   </nav>
-
-  <!-- User Section (when logged in) -->
   <div class="user-section" *ngIf="isLoggedIn">
     <span class="pi pi-user"></span>
     <span class="welcome-text">Welcome {{ userData.name }}</span>

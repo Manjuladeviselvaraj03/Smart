@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink, RouterModule, NavigationEnd } from '@angular/router';
+import {
+  Router,
+  RouterLink,
+  RouterModule,
+  NavigationEnd,
+} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs/operators';
 import { DataserviceService } from '../../sharedResource/dataservice.service';
@@ -8,7 +13,7 @@ import { DataserviceService } from '../../sharedResource/dataservice.service';
   selector: 'app-frontlayout',
   imports: [RouterLink, RouterModule, CommonModule],
   templateUrl: './frontlayout.component.html',
-  styleUrls: ['./frontlayout.component.css']
+  styleUrls: ['./frontlayout.component.css'],
 })
 export class FrontlayoutComponent implements OnInit {
   isLoggedIn = false;
@@ -17,26 +22,22 @@ export class FrontlayoutComponent implements OnInit {
   topEvents: any[] = [];
   user: any;
 
-  constructor(
-    public router: Router,
-    public dataService: DataserviceService
-  ) {
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe((event: any) => {
-      this.currentRoute = event.url;
-      this.checkAuthStatus();
-    });
+  constructor(public router: Router, public dataService: DataserviceService) {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event: any) => {
+        this.currentRoute = event.url;
+        this.checkAuthStatus();
+      });
   }
 
   ngOnInit(): void {
     this.checkAuthStatus();
     this.currentRoute = this.router.url;
     this.loadTopEvents();
-    
+
     this.user = this.dataService.getUserData();
   }
-
 
   loadTopEvents(): void {
     this.dataService.getTopEvents().subscribe({
@@ -50,30 +51,33 @@ export class FrontlayoutComponent implements OnInit {
           {
             id: 1,
             title: 'TechFest 2025',
-            description: 'Join us for an exciting annual college tech fest with coding battles, AI challenges, and project expos.',
-            startingDate: 'Dec 15, 2025'
+            description:
+              'Join us for an exciting annual college tech fest with coding battles, AI challenges, and project expos.',
+            startingDate: 'Dec 15, 2025',
           },
           {
             id: 2,
             title: 'AI & ML Webinar',
-            description: 'Learn the latest trends in AI and ML with top industry experts',
-            startingDate: 'Nov 15, 2025'
+            description:
+              'Learn the latest trends in AI and ML with top industry experts',
+            startingDate: 'Nov 15, 2025',
           },
           {
             id: 3,
             title: 'Startup Connect Meetup',
-            description: 'Network with entrepreneurs, investors, and leaders in this startup community meet.',
-            startingDate: 'Dec 8, 2025'
-          }
+            description:
+              'Network with entrepreneurs, investors, and leaders in this startup community meet.',
+            startingDate: 'Dec 8, 2025',
+          },
         ];
-      }
+      },
     });
   }
 
   checkAuthStatus(): void {
     this.isLoggedIn = this.dataService.isLoggedIn;
     this.userData = this.dataService.getUserData();
-    
+
     if (!this.userData) {
       this.isLoggedIn = false;
     }
@@ -87,7 +91,9 @@ export class FrontlayoutComponent implements OnInit {
     if (route === '/') {
       return this.currentRoute === '/' || this.currentRoute === '/home';
     }
-    return this.currentRoute === route || this.currentRoute.startsWith(route + '/');
+    return (
+      this.currentRoute === route || this.currentRoute.startsWith(route + '/')
+    );
   }
 
   logout(): void {
@@ -96,7 +102,4 @@ export class FrontlayoutComponent implements OnInit {
     this.userData = null;
     this.router.navigate(['/']);
   }
-
- 
-  }
-
+}

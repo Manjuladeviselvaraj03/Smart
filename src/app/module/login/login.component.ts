@@ -1,56 +1,98 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
-import { FrontlayoutComponent } from '../frontlayout/frontlayout.component';
+import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { Router } from '@angular/router';
 import { DataserviceService } from '../../sharedResource/dataservice.service';
+
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, FormsModule, RouterLink],
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ToastModule,
+    ButtonModule,
+    InputTextModule,
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
-export class LoginComponent {
-  email = '';
-  password = '';
+export class LoginComponent implements OnInit {
+  loginForm!: FormGroup;
 
-  constructor(private router: Router, private data: DataserviceService) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private data: DataserviceService,
+    private messageService: MessageService
+  ) {}
+
+  ngOnInit() {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+    });
+  }
+
+  get f() {
+    return this.loginForm.controls;
+  }
 
   onLogin() {
-    if (this.email && this.password) {
-      const requestBody = {
-        email: this.email,
-        password: this.password,
-      };
-
-      this.data.loginUser(requestBody).subscribe({
-        next: (response) => {
-          console.log('Response received:', response);
-          if (response.status === 'Success') {
-            console.log('Login successful');
-            // Build and store only the public user info (avoid storing credentials)
-            const userObj = {
-              name: response.username || response.name || this.email,
-              email: this.email,
-            };
-            this.data.setUserData(userObj);
-            // Navigate to dashboard
-            this.router.navigate(['/dashboard']);
-          } else {
-            alert(response.message);
-          }
-        },
-        error: (error) => {
-          console.error('Error:', error);
-          const statusCode = error.status || 'Unknown';
-          alert(
-            `Unable to hit the server. The server may be down. (Status: ${statusCode})`
-          );
-        },
+    if (!this.loginForm.valid) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Invalid Form',
+        detail: 'Please fill in all fields correctly.',
       });
-    } else {
-      alert('Please fill in all fields correctly before submitting.');
+      this.loginForm.markAllAsTouched();
+      return;
     }
+
+    const requestBody = this.loginForm.value;
+
+    this.data.loginUser(requestBody).subscribe({
+      next: (response) => {
+        if (response.status === 'Success') {
+          const userObj = {
+            name: response.username || response.name || requestBody.email,
+            email: requestBody.email,
+          };
+
+          this.data.setUserData(userObj);
+
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Login Successful',
+            detail: 'Welcome back!',
+          });
+
+          this.router.navigate(['/dashboard']);
+        } else {
+          this.messageService.add({
+            severity: 'warn',
+            summary: 'Login Failed',
+            detail: response.message,
+          });
+        }
+      },
+      error: () => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Server Error',
+          detail: 'Unable to reach server. Try again later.',
+        });
+      },
+    });
   }
 }

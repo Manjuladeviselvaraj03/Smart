@@ -1,5 +1,4 @@
 <div class="event-card" [class.trending]="event.isTrending">
-  <!-- Trending Badge -->
   <div class="trending-badge" *ngIf="event.isTrending">
     <span>TRENDING</span>
   </div>
@@ -11,42 +10,47 @@
   </div>
 </div>
 
-<!-- Details Popup Modal - Outside event card for proper layering -->
 <div class="modal-confirm" *ngIf="showDetailsPopup" (click)="closePopup()">
   <div class="modal-content" (click)="$event.stopPropagation()">
     <div class="modal-header">
       <h2>{{ event.title }}</h2>
       <button class="close-btn" (click)="closePopup()">&times;</button>
     </div>
-    
+
     <div class="modal-body">
       <div class="detail-item">
         <strong>Description:</strong>
         <p>{{ event.description }}</p>
       </div>
-      
+
       <div class="detail-item">
         <strong>Location:</strong>
         <p>{{ event.location }}</p>
       </div>
-      
+
       <div class="detail-item">
         <strong>Timing:</strong>
         <p>{{ event.timing }}</p>
       </div>
-      
+
       <div class="detail-item">
         <strong>Starting Date:</strong>
         <p>{{ event.startingDate }}</p>
       </div>
-      
+
       <div class="detail-item" *ngIf="event.isTrending">
         <span class="trending-tag">Trending Event</span>
       </div>
     </div>
-    
+
     <div class="modal-footer">
-      <button class="btn-register" *ngIf="!hideRegister" (click)="onRegister($event)">Register</button>
+      <button
+        class="btn-register"
+        *ngIf="!hideRegister"
+        (click)="onRegister($event)"
+      >
+        Register
+      </button>
       <button class="btn-close" (click)="closePopup()">Close</button>
     </div>
   </div>

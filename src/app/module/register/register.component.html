@@ -1,64 +1,91 @@
+<p-toast position="bottom-right"></p-toast>
 <div class="main">
   <div class="formcontainer">
     <h2>Register Form</h2>
+
     <form [formGroup]="register" (ngSubmit)="onSubmit()">
       <div class="input">
         <label>Name</label>
-        <input type="text" placeholder="Enter your name" formControlName="name" class="inp1" />
-        @if(register.get('name')?.touched){
-        <div class="error"></div>
-        @if(f['name'].errors?.['required']){
-        <small>Name is required</small>
-        } }
+        <input
+          type="text"
+          class="inp1"
+          placeholder="Enter your name"
+          formControlName="name"
+        />
+
+        @if(register.get('name')?.touched) {
+        <div class="error">
+          @if(f['name'].errors?.['required']) {
+          <small>Name is required</small>
+          }
+        </div>
+        }
       </div>
 
       <div class="input">
         <label>Email</label>
         <input
           type="email"
+          class="inp1"
           placeholder="Enter your email"
           formControlName="email"
-          class="inp1"
         />
-        @if(register.get('email')?.touched){
-        <div class="error"></div>
-        @if(f['email'].errors?.['required']){
-        <small>Email is required</small>
-        }}
-    
-    </div>
+
+        @if(register.get('email')?.touched) {
+        <div class="error">
+          @if(f['email'].errors?.['required']) {
+          <small>Email is required</small>
+          } @if(f['email'].errors?.['pattern']) {
+          <small>Enter a valid email address</small>
+          }
+        </div>
+        }
+      </div>
 
       <div class="input">
         <label>Password</label>
         <input
           type="password"
-          placeholder="Enter your password "
-          formControlName="password"
           class="inp1"
+          placeholder="Enter your password"
+          formControlName="password"
         />
-        @if(register.get('password')?.touched){
-        <div class="error"></div>
-        @if(f['password'].errors?.['required']){
-        <small>Enter valid password</small>
-        }}
+
+        @if(register.get('password')?.touched) {
+        <div class="error">
+          @if(f['password'].errors?.['required']) {
+          <small>Password is required</small>
+          } @if(f['password'].errors?.['pattern']) {
+          <small
+            >Password must contain A-Z, a-z, number, special character and min 8
+            chars.</small
+          >
+          }
+        </div>
+        }
       </div>
 
       <div class="input">
-        <label>PhoneNumber</label>
+        <label>Phone Number</label>
         <input
           type="text"
-          placeholder="Enter your phone no" 
-          formControlName="phoneNumber"
           class="inp1"
+          placeholder="Enter your phone number"
+          formControlName="phoneNumber"
         />
-        @if(register.get('phoneNumber')?.touched){
-        <div class="error"></div>
-        @if(f['phoneNumber'].errors?.['required']){
-        <small>Enter valid phone number</small>
-        }}
+
+        @if(register.get('phoneNumber')?.touched) {
+        <div class="error">
+          @if(f['phoneNumber'].errors?.['required']) {
+          <small>Phone number is required</small>
+          } @if(f['phoneNumber'].errors?.['pattern']) {
+          <small>Phone number must be 10 digits</small>
+          }
+        </div>
+        }
       </div>
 
-      <button type="submit" routerLink="/login">Submit</button>
+      <button type="submit">Submit</button>
     </form>
   </div>
 </div>
