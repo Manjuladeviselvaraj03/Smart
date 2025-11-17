@@ -5,8 +5,9 @@
       <h2>Dashboard</h2>
     </div>
 
-    <!-- Search and Filter Section - Moved to Right -->
+    <!-- Search and Filter Section -->
     <div class="search-filter-section">
+      <!-- Search -->
       <div class="search-box">
         <input
           type="text"
@@ -16,6 +17,7 @@
         />
       </div>
 
+      <!-- Location Dropdown -->
       <div
         class="location-box"
         [class.open]="isDropdownOpen"
@@ -23,10 +25,11 @@
       >
         <div class="custom-select">
           <div class="select-trigger">
-            <span class="selected-value">{{
-              selectedLocation || "All Locations"
-            }}</span>
+            <span class="selected-value">
+              {{ selectedLocation || "All Locations" }}
+            </span>
           </div>
+
           <div class="select-dropdown" *ngIf="isDropdownOpen">
             <div
               class="select-option"
@@ -35,6 +38,7 @@
             >
               <span>All Locations</span>
             </div>
+
             <div
               *ngFor="let location of availableLocations"
               class="select-option"
@@ -60,6 +64,7 @@
     >
       Events
     </button>
+
     <button
       class="tab-button"
       [class.active]="activeTab === 'meetups'"
@@ -67,6 +72,7 @@
     >
       Meet ups
     </button>
+
     <button
       class="tab-button"
       [class.active]="activeTab === 'myevents'"
@@ -76,18 +82,16 @@
     </button>
   </div>
 
-  <!-- Events List -->
+  <!-- Events Container -->
   <div class="events-container">
     <div *ngIf="filteredItems.length === 0" class="no-results">
       <p>
         No
-        {{
-          activeTab === "events"
-            ? "events"
-            : activeTab === "meetups"
-            ? "meetups"
-            : "registrations"
-        }}
+        @switch (activeTab) {
+          @case ('events') { events }
+          @case ('meetups') { meetups }
+          @default { registrations }
+        }
         found.
       </p>
     </div>
@@ -97,12 +101,11 @@
       [event]="item"
       [hideRegister]="activeTab === 'myevents'"
       (registerEvent)="onRegisterEvent($event)"
-    >
-    </app-eventlabel>
+    ></app-eventlabel>
   </div>
 </div>
 
-<!-- Registration Confirmation Modal -->
+<!-- Registration Modal -->
 <div
   class="modal-confirm"
   *ngIf="showConfirmModal"
@@ -129,4 +132,3 @@
     </div>
   </div>
 </div>
-

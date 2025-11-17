@@ -7,7 +7,7 @@ import { DataserviceService } from '../../sharedResource/dataservice.service';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, FormsModule, RouterLink, RouterOutlet],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })

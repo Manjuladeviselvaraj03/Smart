@@ -184,7 +184,6 @@ export class DashboardComponent implements OnInit {
 
   onRegisterEvent(event: any) {
     this.selectedEventForRegistration = event;
-
     this.selectedEventType = this.activeTab === 'meetups' ? 'meetup' : 'event';
     this.showConfirmModal = true;
   }
