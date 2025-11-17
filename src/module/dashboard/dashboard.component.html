@@ -1,0 +1,132 @@
+<header class="header">
+  <div class="header-container">
+    <!-- Logo/Title Section -->
+    <div class="logo-section">
+      <h2>Dashboard</h2>
+    </div>
+
+    <!-- Search and Filter Section - Moved to Right -->
+    <div class="search-filter-section">
+      <div class="search-box">
+        <input
+          type="text"
+          placeholder="Search events, meetups..."
+          [(ngModel)]="searchQuery"
+          (input)="onSearch()"
+        />
+      </div>
+
+      <div
+        class="location-box"
+        [class.open]="isDropdownOpen"
+        (click)="toggleDropdown($event)"
+      >
+        <div class="custom-select">
+          <div class="select-trigger">
+            <span class="selected-value">{{
+              selectedLocation || "All Locations"
+            }}</span>
+          </div>
+          <div class="select-dropdown" *ngIf="isDropdownOpen">
+            <div
+              class="select-option"
+              [class.selected]="selectedLocation === ''"
+              (click)="selectLocation('')"
+            >
+              <span>All Locations</span>
+            </div>
+            <div
+              *ngFor="let location of availableLocations"
+              class="select-option"
+              [class.selected]="selectedLocation === location"
+              (click)="selectLocation(location)"
+            >
+              <span>{{ location }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="dashboard-content">
+  <!-- Tabs -->
+  <div class="tabs">
+    <button
+      class="tab-button"
+      [class.active]="activeTab === 'events'"
+      (click)="switchTab('events')"
+    >
+      Events
+    </button>
+    <button
+      class="tab-button"
+      [class.active]="activeTab === 'meetups'"
+      (click)="switchTab('meetups')"
+    >
+      Meet ups
+    </button>
+    <button
+      class="tab-button"
+      [class.active]="activeTab === 'myevents'"
+      (click)="switchTab('myevents')"
+    >
+      My Events
+    </button>
+  </div>
+
+  <!-- Events List -->
+  <div class="events-container">
+    <div *ngIf="filteredItems.length === 0" class="no-results">
+      <p>
+        No
+        {{
+          activeTab === "events"
+            ? "events"
+            : activeTab === "meetups"
+            ? "meetups"
+            : "registrations"
+        }}
+        found.
+      </p>
+    </div>
+
+    <app-eventlabel
+      *ngFor="let item of filteredItems"
+      [event]="item"
+      [hideRegister]="activeTab === 'myevents'"
+      (registerEvent)="onRegisterEvent($event)"
+    >
+    </app-eventlabel>
+  </div>
+</div>
+
+<!-- Registration Confirmation Modal -->
+<div
+  class="modal-confirm"
+  *ngIf="showConfirmModal"
+  (click)="closeConfirmModal()"
+>
+  <div class="modal-content confirm-modal" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>Confirm Registration</h2>
+      <button class="close-btn" (click)="closeConfirmModal()">&times;</button>
+    </div>
+
+    <div class="modal-body">
+      <p><strong>Event:</strong> {{ selectedEventForRegistration?.title }}</p>
+      <p><strong>Timing:</strong> {{ selectedEventForRegistration?.timing }}</p>
+      <p>
+        <strong>Date:</strong> {{ selectedEventForRegistration?.startingDate }}
+      </p>
+      <p>Do you want to register for this event?</p>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-confirm" (click)="confirmRegistration()">OK</button>
+      <button class="btn-cancel" (click)="closeConfirmModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+

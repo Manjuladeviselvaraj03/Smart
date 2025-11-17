@@ -1,0 +1,64 @@
+<div class="main">
+  <div class="formcontainer">
+    <h2>Register Form</h2>
+    <form [formGroup]="register" (ngSubmit)="onSubmit()">
+      <div class="input">
+        <label>Name</label>
+        <input type="text" placeholder="Enter your name" formControlName="name" class="inp1" />
+        @if(register.get('name')?.touched){
+        <div class="error"></div>
+        @if(f['name'].errors?.['required']){
+        <small>Name is required</small>
+        } }
+      </div>
+
+      <div class="input">
+        <label>Email</label>
+        <input
+          type="email"
+          placeholder="Enter your email"
+          formControlName="email"
+          class="inp1"
+        />
+        @if(register.get('email')?.touched){
+        <div class="error"></div>
+        @if(f['email'].errors?.['required']){
+        <small>Email is required</small>
+        }}
+    
+    </div>
+
+      <div class="input">
+        <label>Password</label>
+        <input
+          type="password"
+          placeholder="Enter your password "
+          formControlName="password"
+          class="inp1"
+        />
+        @if(register.get('password')?.touched){
+        <div class="error"></div>
+        @if(f['password'].errors?.['required']){
+        <small>Enter valid password</small>
+        }}
+      </div>
+
+      <div class="input">
+        <label>PhoneNumber</label>
+        <input
+          type="text"
+          placeholder="Enter your phone no" 
+          formControlName="phoneNumber"
+          class="inp1"
+        />
+        @if(register.get('phoneNumber')?.touched){
+        <div class="error"></div>
+        @if(f['phoneNumber'].errors?.['required']){
+        <small>Enter valid phone number</small>
+        }}
+      </div>
+
+      <button type="submit" routerLink="/login">Submit</button>
+    </form>
+  </div>
+</div>
